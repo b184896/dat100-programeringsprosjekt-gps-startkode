@@ -17,34 +17,42 @@ public class GPSData {
 	public GPSPoint[] getGPSPoints() {
 		return this.gpspoints;
 	}
-	
+
 	protected boolean insertGPS(GPSPoint gpspoint) {
 
 		boolean inserted = false;
-		
-		if (antall<gpspoints.length) {
+
+		if (antall < gpspoints.length) {
 			gpspoints[antall] = gpspoint;
 			inserted = true;
 			antall++;
 		}
-		
+
 		return inserted;
-	
+
 	}
 
 	public boolean insert(String time, String latitude, String longitude, String elevation) {
 
-		GPSPoint gpspoint;
+		int ti = GPSDataConverter.toSeconds(time);
+		double la = Double.parseDouble(latitude);
+		double lo = Double.parseDouble(longitude);
+		double el = Double.parseDouble(elevation);
 
-		
-		
-		
+		GPSPoint gpspoint = new GPSPoint(ti, la, lo, el);
+
+		return insertGPS(gpspoint);
 	}
 
 	public void print() {
 
-		throw new UnsupportedOperationException(TODO.method());
+		System.out.println("===== GPS Data - START =====");
 
-		// TODO 
+		for (int i = 0; i < gpspoints.length; i++) {
+			int j = i + 1;
+			System.out.println(j + gpspoints.toString());
+		}
+
+		System.out.println("===== GPS Data - SLUTT =====");
 	}
 }
