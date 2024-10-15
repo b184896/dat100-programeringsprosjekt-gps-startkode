@@ -3,6 +3,7 @@ package no.hvl.dat100ptc.oppgave3;
 import static java.lang.Math.*;
 
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
+import no.hvl.dat100ptc.oppgave2.GPSDataConverter;
 import no.hvl.dat100ptc.TODO;
 
 public class GPSUtils {
@@ -79,7 +80,7 @@ public class GPSUtils {
 		double a = compute_a(phi1, phi2, deltaphi, deltadelta);
 		double c = compute_c(a);
 		
-		d = 6371000 * c;
+		d = R * c;
 		
 		return d;
 	}
@@ -106,9 +107,13 @@ public class GPSUtils {
 		int secs;
 		double speed;
 		
-		throw new UnsupportedOperationException(TODO.method());
+		secs = gpspoint2.getTime() - gpspoint1.getTime();
 		
-		// TODO
+		double d = distance(gpspoint1, gpspoint2);
+		
+		speed = d / secs;
+		
+		return speed;
 
 	}
 
