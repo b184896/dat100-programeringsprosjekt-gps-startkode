@@ -56,9 +56,12 @@ public class GPSComputer {
 
 	public int totalTime() {
 
-		// TODO
-		throw new UnsupportedOperationException(TODO.method());
+		int secs = 0;
 		
+		for (int i = 0; i < gpspoints.length - 1; i++) {
+			secs += gpspoints[i + 1].getTime() - gpspoints[i].getTime();
+		}
+		return secs;
 	}
 		
 
