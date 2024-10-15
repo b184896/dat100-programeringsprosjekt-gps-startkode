@@ -79,14 +79,11 @@ public class GPSComputer {
 		
 		double max = 0;
 		
-		double[] speeds = new double[gpspoints.length-1];
-		for (int i = 0; i < speeds.length; i++) {
-			speeds[i] = GPSUtils.speed(gpspoints[i],gpspoints[i+1]);
-		}
+		double[] s = speeds();
 		
-		for (int i = 0; i < speeds.length; i++) {
-			if (max < speeds[i]) {
-				max = speeds[i];
+		for (int i = 0; i < s.length; i++) {
+			if (max < s[i]) {
+				max = s[i];
 			}
 		}
 		return max;
@@ -96,8 +93,6 @@ public class GPSComputer {
 
 		double average = 0;
 		
-		// TODO
-		throw new UnsupportedOperationException(TODO.method());
 		
 	}
 
