@@ -93,6 +93,13 @@ public class GPSComputer {
 
 		double average = 0;
 		
+		double t = totalTime();
+		double d = totalDistance();
+		
+		average = d/t;
+		
+		return average;
+		
 		
 	}
 
@@ -106,7 +113,9 @@ public class GPSComputer {
 
 		double met = 0;		
 		double speedmph = speed * MS;
-
+		
+		
+		
 		// TODO 
 		throw new UnsupportedOperationException(TODO.method());
 		
