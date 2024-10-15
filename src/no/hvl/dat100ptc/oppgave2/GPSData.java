@@ -28,7 +28,6 @@ public class GPSData {
 			antall++;
 		}
 		
-		
 		return inserted;
 	
 	}
@@ -37,9 +36,8 @@ public class GPSData {
 
 		GPSPoint gpspoint;
 
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO 
+		
+		
 		
 	}
 
