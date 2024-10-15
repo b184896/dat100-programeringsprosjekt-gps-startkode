@@ -122,10 +122,15 @@ public class GPSUtils {
 		String timestr;
 		String TIMESEP = ":";
 
-		throw new UnsupportedOperationException(TODO.method());
+		String s1 = "  %02d%s%02d%s%02d";
 		
-		// TODO 
+		int t = secs / 3600;
+		int m = (secs % 3600) / 60;
+		int s = (secs % 3600) % 60;
 		
+		timestr = String.format(s1, t, TIMESEP, m, TIMESEP, s);
+		
+		return timestr;
 	}
 	
 	private static int TEXTWIDTH = 10;
