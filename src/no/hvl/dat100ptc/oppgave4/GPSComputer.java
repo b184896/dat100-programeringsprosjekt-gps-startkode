@@ -66,12 +66,13 @@ public class GPSComputer {
 		
 
 	public double[] speeds() {
-
+		
 		double[] speeds = new double[gpspoints.length-1];
-		
-		// TODO
-		throw new UnsupportedOperationException(TODO.method());
-		
+		for (int i = 0; i < speeds.length; i++) {
+			speeds[i] = GPSUtils.speed(gpspoints[i],gpspoints[i+1]);
+			
+		}
+		return speeds;
 	}
 	
 	public double maxSpeed() {
