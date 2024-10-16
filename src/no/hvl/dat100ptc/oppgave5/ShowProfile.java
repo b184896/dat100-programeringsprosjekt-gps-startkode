@@ -48,16 +48,19 @@ public class ShowProfile extends EasyGraphics {
 		int x = MARGIN; // første høyde skal tegnes ved MARGIN
 		int y;
 		
+		
 		setColor(0,0,255);
 	
-			for (int i = 0; i < gpspoints.length - 1; i++) {
-				y = Math.max(0, MAXBARHEIGHT - (int) gpspoints[i].getElevation());
-				int y2 = Math.max(ybase,(int) gpspoints[i +1].getElevation());
-				int x2 = x +1;
-				drawLine(x + i,y,x2 + i,y2);		
-				
-			}
-		
+		double scalingFactor = 2;	
+		for (int i = 0; i < gpspoints.length - 1; i++) {
+			int scaledElevation = (int) (gpspoints[i].getElevation()* scalingFactor);
+			y = Math.max(0,MAXBARHEIGHT - scaledElevation + 100);
+			int y2 = (int) Math.max(ybase, gpspoints[i +1].getElevation());
+			int x2 = 2;
+			  int ss  = fillRectangle(x + 3 * i, y, x2, y2);
+			
+		}
+	
 	}
-
+	
 }
