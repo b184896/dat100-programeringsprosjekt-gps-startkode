@@ -12,8 +12,8 @@ import no.hvl.dat100ptc.TODO;
 public class ShowRoute extends EasyGraphics {
 
 	private static int MARGIN = 50;
-	private static int MAPXSIZE = 800;
-	private static int MAPYSIZE = 800;
+	private static int MAPXSIZE = 700;
+	private static int MAPYSIZE = 600;
 
 	private GPSPoint[] gpspoints;
 	private GPSComputer gpscomputer;
@@ -44,7 +44,11 @@ public class ShowRoute extends EasyGraphics {
 
 		maxlon = GPSUtils.findMax(GPSUtils.getLongitudes(gpspoints));
 		maxlat = GPSUtils.findMax(GPSUtils.getLatitudes(gpspoints));
-
+		
+		System.out.println(minlon);
+		System.out.println(maxlon);
+		System.out.println(gpspoints[0].getLongitude());
+		
 		xstep = scale(MAPXSIZE, minlon, maxlon);
 		ystep = scale(MAPYSIZE, minlat, maxlat);
 
@@ -53,11 +57,7 @@ public class ShowRoute extends EasyGraphics {
 		replayRoute(MARGIN + MAPYSIZE);
 
 		showStatistics();
-
-		System.out.println(gpspoints[0].getLongitude() + " " + gpspoints[0].getLatitude());
-		System.out.println(gpspoints[1].getLongitude() + " " + gpspoints[1].getLatitude());
-		System.out.println(gpspoints[2].getLongitude() + " " + gpspoints[2].getLatitude());
-
+		
 	}
 
 	public double scale(int maxsize, double minval, double maxval) {
@@ -69,11 +69,24 @@ public class ShowRoute extends EasyGraphics {
 
 	public void showRouteMap(int ybase) {
 
-		for (int i = 0; i < gpspoints.length; i++) {
-			
-			int x = (int)(gpspoints[i].getLongitude() * 1000000);
-			int y = (int)(gpspoints[i].getLatitude() * 1000000);
+		setColor(0, 255, 0);
 
+		for (int i = 0; i < gpspoints.length - 1; i++) {
+			GPSPoint P1 = gpspoints[i];
+			GPSPoint P2 = gpspoints[i + 1];
+
+			int x1 = MARGIN + (int) ((P1.getLongitude() - minlon) * xstep);
+			int y1 = ybase + (int) ((P1.getLatitude() - minlat) * ystep);
+			
+			System.out.println(x1);
+			
+			int x2 = MARGIN + (int) ((P2.getLongitude() - minlon) * xstep);
+			int y2 = ybase + (int) ((P2.getLatitude() - minlat) * ystep);
+
+			fillCircle(x1, y1, 3);
+			fillCircle(x2, y2, 3);
+
+			drawLine(x1, y1, x2, y2);
 		}
 
 	}
@@ -104,6 +117,26 @@ public class ShowRoute extends EasyGraphics {
 
 	public void replayRoute(int ybase) {
 
-	}
+		setColor(0, 0, 255);
+		
+		int a = MARGIN + (int) ((gpspoints[0].getLongitude() - minlon) * xstep);
+		int b = ybase - (int) ((gpspoints[0].getLatitude() - minlat) * ystep);
+		
+		int c = fillCircle(a, b, 4);
+		
+		for (int i = 0; i < gpspoints.length - 1; i++) {
+			GPSPoint P1 = gpspoints[i];
+			GPSPoint P2 = gpspoints[i + 1];
 
+			int x1 = MARGIN + (int) ((P1.getLongitude() - minlon) * xstep);
+			int y1 = ybase - (int) ((P1.getLatitude() - minlat) * ystep);
+
+			int x2 = MARGIN + (int) ((P2.getLongitude() - minlon) * xstep);
+			int y2 = ybase - (int) ((P2.getLatitude() - minlat) * ystep);
+
+			moveCircle(c, x2, y2);
+			
+		}
+
+	}
 }
