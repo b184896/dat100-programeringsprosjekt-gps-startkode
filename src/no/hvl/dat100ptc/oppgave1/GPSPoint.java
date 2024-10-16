@@ -71,7 +71,7 @@ public class GPSPoint {
 
 		String str;
 
-		str = time + " " + "(" + latitude + "," + longitude + ")" + " " + elevation + "\n";
+		str = getTime() + " " + "(" + getLatitude() + "," + getLongitude() + ")" + " " + getElevation() + "\n";
 
 		return str;
 
