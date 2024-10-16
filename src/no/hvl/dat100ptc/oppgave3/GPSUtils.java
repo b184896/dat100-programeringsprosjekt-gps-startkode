@@ -140,7 +140,6 @@ public class GPSUtils {
 		String str;
 
 		
-		throw new UnsupportedOperationException(TODO.method());
 		
 		// TODO
 		
