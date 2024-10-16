@@ -13,12 +13,7 @@ public class GPSDataConverter {
 		int secs;
 		int hr, min, sec;
 		
-		int startIndex, endIndex;
-		
-		startIndex = 11;
-		endIndex = 20;
-		
-		String s1 = timestr.substring(startIndex, endIndex);
+		String s1 = timestr.substring(TIME_STARTINDEX);
 		String s2 = s1.substring(0, 2);
 		String s3 = s1.substring(3, 5);
 		String s4 = s1.substring(6, 8);
@@ -27,7 +22,7 @@ public class GPSDataConverter {
 		min = Integer.parseInt(s3);
 		sec = Integer.parseInt(s4);
 		
-		secs = hr * 60 * 60 + min * 60 + sec;
+		secs = hr * 3600 + min * 60 + sec;
 		
 		return secs;
 		
