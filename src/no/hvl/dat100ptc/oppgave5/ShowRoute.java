@@ -76,12 +76,12 @@ public class ShowRoute extends EasyGraphics {
 			GPSPoint P2 = gpspoints[i + 1];
 
 			int x1 = MARGIN + (int) ((P1.getLongitude() - minlon) * xstep);
-			int y1 = ybase + (int) ((P1.getLatitude() - minlat) * ystep);
+			int y1 = ybase - (int) ((P1.getLatitude() - minlat) * ystep);
 			
 			System.out.println(x1);
 			
 			int x2 = MARGIN + (int) ((P2.getLongitude() - minlon) * xstep);
-			int y2 = ybase + (int) ((P2.getLatitude() - minlat) * ystep);
+			int y2 = ybase - (int) ((P2.getLatitude() - minlat) * ystep);
 
 			fillCircle(x1, y1, 3);
 			fillCircle(x2, y2, 3);
